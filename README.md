@@ -66,3 +66,13 @@ The expected error message is defined.
 testUpdate_shouldThrowPersonExceptionWhenPersonGenderIsNull:
 Tests that the update method throws a PersonException when the person's gender is null.
 The expected error message is defined.
+
+### TrafficBehaviorServiceTest:
+
+testTrafficSettersAndGetters: This test validates all setter and getter methods of the Traffic class. It sets each property to a specific value and then checks if the getter returns the expected value.
+New Tests for Footpassenger Class:
+
+testFootpassengerSettersAndGetters: This test validates all setter and getter methods of the Footpassenger class. It sets each property to a specific value and then checks if the getter returns the expected value.
+Additional Valid Scenario Test:
+
+testFootpassengerCrossTheStreet_shouldAllowCrossingWhenLightTrafficAndGreenLight: This test ensures that a Footpassenger is allowed to cross the street when the traffic is light and the traffic light is green, and both sides are looked at before crossing.

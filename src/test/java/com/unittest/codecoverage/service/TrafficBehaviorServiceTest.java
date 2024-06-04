@@ -10,6 +10,8 @@ import com.unittest.codecoverage.models.Traffic;
 import com.unittest.codecoverage.models.TrafficLigth;
 import com.unittest.codecoverage.services.TrafficBehaviorService;
 import com.unittest.codecoverage.services.impl.TrafficBehaviorServiceImpl;
+import com.unittest.codecoverage.models.StreetDirectionFlow;
+
 
 public class TrafficBehaviorServiceTest {
 	
@@ -48,6 +50,55 @@ public class TrafficBehaviorServiceTest {
 			.isInstanceOf(BehaviorException.class)
 			.hasMessage("You should be more careful");
 		
+	}
+	@Test
+	public void testTrafficSettersAndGetters() {
+		Traffic traffic = new Traffic();
+
+		traffic.setIntenseCarTraffic(true);
+		traffic.setMaxSpeedAllowed((short) 60);
+		traffic.setMinSpeedAllowed((short) 30);
+		traffic.setCurrentTrafficLight(TrafficLigth.GREEN);
+		traffic.setStreetDirectionFlow(StreetDirectionFlow.TWO_WAY);
+
+		Assertions.assertThat(traffic.intenseCarTraffic()).isTrue();
+		Assertions.assertThat(traffic.getMaxSpeedAllowed()).isEqualTo((short) 60);
+		Assertions.assertThat(traffic.getMinSpeedAllowed()).isEqualTo((short) 30);
+		Assertions.assertThat(traffic.getCurrentTrafficLight()).isEqualTo(TrafficLigth.GREEN);
+		Assertions.assertThat(traffic.getStreetDirectionFlow()).isEqualTo(StreetDirectionFlow.TWO_WAY);
+	}
+
+	@Test
+	public void testFootpassengerSettersAndGetters() {
+		Footpassenger footpassenger = new Footpassenger();
+
+		footpassenger.setCrossedTheCrosswalk(true);
+		footpassenger.setCrossedTrafficLigth(TrafficLigth.RED);
+		footpassenger.setLookedToTheLeft(true);
+		footpassenger.setLookedToTheRight(false);
+		footpassenger.setCrossedTheRoad(true);
+
+		Assertions.assertThat(footpassenger.crossedTheCrosswalk()).isTrue();
+		Assertions.assertThat(footpassenger.getCrossedTrafficLigth()).isEqualTo(TrafficLigth.RED);
+		Assertions.assertThat(footpassenger.lookedToTheLeft()).isTrue();
+		Assertions.assertThat(footpassenger.lookedToTheRight()).isFalse();
+		Assertions.assertThat(footpassenger.crossedTheRoad()).isTrue();
+	}
+
+	@Test
+	@DisplayName("Should allow footpassenger to cross during light traffic and green light")
+	public void testFootpassengerCrossTheStreet_shouldAllowCrossingWhenLightTrafficAndGreenLight() {
+		Traffic currentTraffic = new Traffic();
+		currentTraffic.setIntenseCarTraffic(false);
+
+		Footpassenger currentFootpassengerBehavior = new Footpassenger();
+		currentFootpassengerBehavior.setCrossedTheRoad(true);
+		currentFootpassengerBehavior.setCrossedTrafficLigth(TrafficLigth.GREEN);
+		currentFootpassengerBehavior.setLookedToTheLeft(true);
+		currentFootpassengerBehavior.setLookedToTheRight(true);
+
+		Assertions.assertThatCode(() -> trafficBehaviorService.footpassengerCrossTheStreet(currentTraffic, currentFootpassengerBehavior))
+			.doesNotThrowAnyException();
 	}
 
 }
