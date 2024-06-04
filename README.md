@@ -67,6 +67,7 @@ testUpdate_shouldThrowPersonExceptionWhenPersonGenderIsNull:
 Tests that the update method throws a PersonException when the person's gender is null.
 The expected error message is defined.
 
+
 ### TrafficBehaviorServiceTest:
 
 testTrafficSettersAndGetters: This test validates all setter and getter methods of the Traffic class. It sets each property to a specific value and then checks if the getter returns the expected value.
