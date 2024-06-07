@@ -1,6 +1,25 @@
 # Report
 
 
+### PersonRepositoryTest
+
+Test Insert Method:
+Ensures that NullPointerException is thrown when a null Person is passed.
+Ensures that a valid Person is successfully inserted and returned.
+
+Test Update Method:
+Ensures that NullPointerException is thrown when a null Person is passed.
+Ensures that a valid Person is successfully updated (no exception is thrown).
+
+Test Delete Method:
+Ensures that NullPointerException is thrown when a null name is passed.
+Ensures that a valid name is successfully deleted (no exception is thrown).
+
+Test Get Method:
+Ensures that NullPointerException is thrown when a null name is passed.
+Ensures that the method returns null when the Person is not found.
+
+
 ### PersonServiceTest
 testUpdate_shouldUpdatePersonWithSuccessWhenAllPersonsInfoIsFilled:
 Tests that the update method successfully updates a Person object when all required information is provided.
